@@ -1,12 +1,17 @@
-// const person = require("./person");
+const http = require("http");
+const path = require("path");
+const fs = require("fs");
 
-// console.log(person);
-// console.log(__dirname, __filename)
+const port = process.env.PORT || 3000;
 
-const Logger = require("./logger");
+const server = http.createServer((req, res) => {
+  if (req.url === "/") {
+    //Set Contet-type
+    res.writeHead(200, { "Content-Type": "text/html" });
+    res.end("<h1>Home</h1>");
+  }
+});
 
-const logger = new Logger();
-
-logger.on("message", (data) => console.log("Called Listener:", data));
-
-logger.log("Shiet! This actually works LOL");
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+});
