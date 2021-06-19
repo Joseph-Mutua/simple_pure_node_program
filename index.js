@@ -24,9 +24,15 @@ const server = http.createServer((req, res) => {
     });
   }
 
+  if (req.url === "/api/users") {
+    const users = [
+      { name: "Bob Smith", age: 54 },
+      { name: "Jackie Chan", age: 67 },
+    ];
 
-
-  
+    res.writeHead(200, { "Content-Type": "application/json" });
+    res.end(JSON.stringify(users));
+  }
 });
 
 server.listen(port, () => {
